@@ -20,7 +20,7 @@ class Bullet(Sprite):
 		self.color = ai_settings.bullet_color
 		self.speed_factor = ai_settings.bullet_speed_factor
 
-	def udpate(self):
+	def update(self):
 		#move the bullet up the screen
 		#update the decimal position of the bullet
 		self.y -= self.speed_factor
