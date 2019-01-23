@@ -14,7 +14,7 @@ def check_keydown_events(event,ai_settings,screen,ship, bullets):
 		
 def fire_bullet(ai_settings,screen,ship,bullets):
 	#fire a bullet if limit not yet reached
-	#create a new bullet and add it to the bullets group
+	#create a new bullet and add it to the bullets group if length of bullets, the number already on screen, is not more than the number allowed, then create another bullet
 	if len(bullets)<ai_settings.bullets_allowed:
 		new_bullet = Bullet(ai_settings,screen,ship)
 		bullets.add(new_bullet)
