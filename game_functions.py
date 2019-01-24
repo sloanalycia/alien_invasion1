@@ -4,6 +4,8 @@ import pygame
 
 from bullet import Bullet
 
+import alien from Alien
+
 def check_keydown_events(event,ai_settings,screen,ship, bullets):
 	if event.key == pygame.K_RIGHT:
 		ship.moving_right = True
@@ -45,7 +47,7 @@ def check_events(ai_settings,screen,ship,bullets):
 				
 
 				
-def update_screen(ai_settings, screen, ship,alien, bullets):
+def update_screen(ai_settings, screen, ship,aliens, bullets):
 	
 	#update images on the screen and flip to the new screen
 	
@@ -56,7 +58,8 @@ def update_screen(ai_settings, screen, ship,alien, bullets):
 	for bullet in bullets.sprites():
 		bullet.draw_bullet()
 	ship.blitme()
-	alien.blitme()
+	#draw automatically draws each element in the group in its defined rect position
+	aliens.draw(screen)
 				
 	#Make the most recently drawn screen visible	
 	pygame.display.flip()
@@ -68,3 +71,31 @@ def update_bullets(bullets):
 	for bullet in bullets.copy():
 		if bullet.rect.bottom <= 0:
 			bullets.remove(bullet)
+
+def get_number_aliens_x(ai_settings,alien_width):
+	available_space_x = ai_settings.screen_width - 2 * alien_width
+	#this calculates the num of aliens
+	number_aliens_x = int(available_space_x / (2 * alien_width))
+	return number_aliens_x
+
+def create_alien(ai_settings, screen, aliens,alien_number):
+	alien = Alien(ai_settings, screen)
+	alien_width = alien.rect.width
+	#this calculation helps determine the each aliens spot on the screen
+	alien.x = alien_width + 2 * alien_width * alien_number
+	alien.rect.x = alien.x
+	aliens.add(alien)
+			
+def create_fleet(ai_settings, screen, aliens):
+	#create a fleet of aliens
+	#this alien is to help figure out how many aliens to put on screen and doesn't itself get put on screen
+	alien = Alien(ai_settings, screen)
+	number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width)
+	#here the horizontal space for aliens is calculated and the amount that can fit in that space
+	
+	
+	#create first row of aliens
+	#this is a loop that counts from 0 to the num of aliens we need
+	for alien_number in range(number_aliens_x):
+		create_alien(ai_settings,screen, aliens, alien_number) 
+		
