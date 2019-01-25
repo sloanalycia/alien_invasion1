@@ -4,7 +4,7 @@ import pygame
 
 from bullet import Bullet
 
-import alien from Alien
+from alien import Alien
 
 def check_keydown_events(event,ai_settings,screen,ship, bullets):
 	if event.key == pygame.K_RIGHT:
@@ -91,10 +91,10 @@ def create_alien(ai_settings, screen, aliens,alien_number, row_number):
 	alien.x = alien_width + 2 * alien_width * alien_number
 	alien.rect.x = alien.x
 	#this is to move the row farther down the screen
-	alien.rect.y = alien.rect.height + 2 * alien_height * row_number
+	alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
 	aliens.add(alien)
 			
-def create_fleet(ai_settings, screen, aliens):
+def create_fleet(ai_settings, screen, ship, aliens):
 	#create a fleet of aliens
 	#this alien is to help figure out how many aliens to put on screen and doesn't itself get put on screen
 	alien = Alien(ai_settings, screen)
@@ -119,10 +119,10 @@ def change_fleet_direction(ai_settings,aliens):
 	#drop the fleet and change direction
 	for alien in aliens.sprites():
 		alien.rect.y += ai_settings.fleet_drop_speed
-	ai_settings.fleet_direction += 1
+	ai_settings.fleet_direction *= -1
 		
 	
-def update_aliens(aliens):
+def update_aliens(ai_settings, aliens):
 	check_fleet_edges(ai_settings,aliens)
 	aliens.update()#this calls the update from the alien method and runs each of the update parts
 	
