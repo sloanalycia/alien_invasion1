@@ -38,6 +38,6 @@ class Ship():
 	
 	def center_ship(self):
 		#center the ship on the screen
-		self.center = self.screen._rect.centerx
+		self.center = self.screen_rect.centerx
 			
 			
