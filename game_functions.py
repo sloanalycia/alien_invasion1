@@ -50,7 +50,7 @@ def check_events(ai_settings,screen,stats,sb,ship,aliens,bullets,play_button):
 			check_play_button(ai_settings,screen,stats,sb,play_button,ship,aliens,bullets,mouse_x,mouse_y)
 			
 
-def check_play_button(ai_settings,screen,sb, stats,play_button,ship, aliens, bullets, mouse_x,mouse_y):
+def check_play_button(ai_settings,screen, stats,sb, play_button,ship, aliens, bullets, mouse_x,mouse_y):
 	#start a new game when the player clicks play
 	button_clicked = play_button.rect.collidepoint(mouse_x,mouse_y)
 	if button_clicked and not stats.game_active:
