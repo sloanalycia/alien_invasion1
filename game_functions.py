@@ -217,7 +217,7 @@ def check_aliens_bottom(ai_settings,screen, stats, sb, ship, aliens, bullets):
 			break
 			
 	
-def update_aliens(ai_settings,screen,ship,stats,sb, aliens,bullets):
+def update_aliens(ai_settings,screen,stats,ship,sb, aliens,bullets):
 	check_fleet_edges(ai_settings,aliens)
 	aliens.update()#this calls the update from the alien method and runs each of the update parts
 	
